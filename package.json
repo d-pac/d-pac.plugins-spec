@@ -1,0 +1,23 @@
+{
+  "name": "d-pac.plugins-spec",
+  "version": "0.4.0",
+  "description": "D-pac plugin specification",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-pac/d-pac.plugins-spec"
+  },
+  "keywords": [
+    "plugins",
+    "d-pac"
+  ],
+  "author": "d-pac",
+  "license": "GPL v3",
+  "bugs": {
+    "url": "https://github.com/d-pac/d-pac.plugins-spec/issues"
+  },
+  "homepage": "https://github.com/d-pac/d-pac.plugins-spec"
+}
