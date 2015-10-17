@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "required": true,
+  "title": "D-PAC plugin manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "d-pac": {
+      "title": "Main d-pac manifest",
+      "type": "array",
+      "required": true,
+      "uniqueItems": true,
+      "items": {
+        "title" : "Plugin declarations",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "title": "plugin name"
+          },
+          "description": {
+            "type": "string",
+            "required": true,
+            "title": "A description of the plugin"
+          },
+          "type": {
+            "type": "string",
+            "required": true,
+            "title": "The type of the plugin"
+          },
+          "satisfies": {
+            "type": "string",
+            "required": false,
+            "title": "[Semver](http://semver.org) version specification of the **d-pac plugin specification** (i.e. this document) the plugin is compatible with. E.g. `^0.3.1`"
+          },
+          "entry": {
+            "type": "string",
+            "required": false,
+            "title": "The main access point to your plugin, by default the same value as `type` is assumed."
+          }
+        }
+      }
+    }
+  }
+}
