@@ -1,0 +1,7 @@
+{
+  "name": "d-pac.plugins-spec",
+  "private": true,
+  "dependencies": {
+    "docson": "*"
+  }
+}
