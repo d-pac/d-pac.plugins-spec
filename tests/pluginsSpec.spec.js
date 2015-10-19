@@ -106,15 +106,4 @@ describe( 'D-PAC plugin specification', function(){
       expect( actual.isValid ).to.equal( false );
     } );
   } );
-  describe( '.validateSelectPayload()', function(){
-    it( "should validate minimal payloads", function(){
-      var actual = subject.validateSelectPayload( fixtures.selectPayloads.items.valid.minimal );
-      expect( actual.isValid ).to.equal( true );
-    } );
-    it( "should validate full payloads", function(){
-      var actual = subject.validateSelectPayload( fixtures.selectPayloads.items.valid.full );
-      expect( actual.isValid ).to.equal( true );
-    } );
-  } );
-
 } );

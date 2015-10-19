@@ -1,8 +1,8 @@
 'use strict';
 var validator = require( 'is-my-json-valid' );
 
-function createValidator( schema ){
-  var validate = validator( schema );
+function createValidator( schema, opts ){
+  var validate = validator( schema, opts );
   return function( data ){
     var result = { isValid: validate( data ) };
     if( !result.isValid ){
@@ -18,8 +18,7 @@ var schemas = {
   comparison: require( './schemas/ComparisonSchema.json' ),
   comparisonsList: require( './schemas/ComparisonsListSchema.json' ),
   representation: require( './schemas/RepresentationSchema.json' ),
-  representationsList: require( './schemas/RepresentationsListSchema.json' ),
-  selectPayload: require( './schemas/SelectPayloadSchema.json' )
+  representationsList: require( './schemas/RepresentationsListSchema.json' )
 };
 
 module.exports = {
@@ -37,14 +36,8 @@ module.exports = {
       representation: schemas.representation
     }
   } ),
-  validateSelectPayload: createValidator( schemas.selectPayload, {
-    schemas: {
-      representationsList: schemas.representationsList,
-      comparisonsList: schemas.comparisonsList,
-      assessment: schemas.assessment
-    }
-  } ),
 
+  createValidator: createValidator,
   schemas: schemas,
   VERSION: require( './package.json' ).version
 };
