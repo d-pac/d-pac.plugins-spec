@@ -19,7 +19,7 @@
     },
     "rankType": {
       "type": "string",
-      "oneOf": [
+      "enum": [
         "to rank",
         "benchmark",
         "ranked",
@@ -36,10 +36,16 @@
       "required": true,
       "properties": {
         "value": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "se": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     }

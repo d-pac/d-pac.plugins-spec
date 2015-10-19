@@ -11,7 +11,7 @@
       "required": true,
       "uniqueItems": true,
       "items": {
-        "title" : "Plugin declarations",
+        "title": "Plugin declarations",
         "type": "object",
         "properties": {
           "name": {
@@ -28,7 +28,9 @@
             "type": "string",
             "required": true,
             "title": "The type of the plugin",
-            "oneOf": ["select"]
+            "enum": [
+              "select"
+            ]
           },
           "entry": {
             "type": "string",

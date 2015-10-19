@@ -11,7 +11,8 @@ To verify your plugin fullfils all requirements:
 var spec = require('d-pac.plugins-spec');
 var pkg = require('./package.json');
 
-var isValidManifest = spec.isManifest(pkg);
+var result = spec.validateManifest(pkg);
+console.log(result.isValid);
 ```
 
 ## Plugin API
@@ -55,31 +56,34 @@ console.log(Object.keys(spec.schemas))
   'selectPayload' ]
 ```
 
-It also exposes validators for each of the schemas, using [`is-my-json-valid`](https://github.com/mafintosh/is-my-json-valid):
+It also exposes validators for each of the schemas, wrapping [`is-my-json-valid`](https://github.com/mafintosh/is-my-json-valid):
 
 ```js
 console.log(Object.keys(spec));
 ```
 ```
 #output
-[ 'isManifest',
-  'isAssessment',
-  'isComparison',
-  'isComparisonsList',
-  'isRepresentation',
-  'isRepresentationsList',
-  'isSelectPayload',
+[ 'validateManifest',
+  'validateAssessment',
+  'validateComparison',
+  'validateComparisonsList',
+  'validateRepresentation',
+  'validateRepresentationsList',
+  'validateSelectPayload',
   'schemas',
   'VERSION' ]
 ```
 
 **Usage**:
 
-`is<SchemaType>(data)`
+`validate<SchemaType>(data) : Object`
 
 ```js
-var isValidComparison = spec.isComparison(comparison);
+var result = spec.validateComparison(comparison);
 ```
+
+The result is an object with `isValid: Boolean` and in case it's not valid data an `errors` array with all errors.
+
 
 [npm-url]: https://npmjs.org/package/d-pac.plugins-spec
 [npm-image]: https://badge.fury.io/js/d-pac.plugins-spec.svg

@@ -1,6 +1,17 @@
 'use strict';
 var validator = require( 'is-my-json-valid' );
 
+function createValidator( schema ){
+  var validate = validator( schema );
+  return function( data ){
+    var result = { isValid: validate( data ) };
+    if( !result.isValid ){
+      result.errors = validate.errors;
+    }
+    return result;
+  }
+}
+
 var schemas = {
   manifest: require( './schemas/ManifestSchema.json' ),
   assessment: require( './schemas/AssessmentSchema.json' ),
@@ -12,21 +23,21 @@ var schemas = {
 };
 
 module.exports = {
-  isManifest: validator( schemas.manifest ),
-  isAssessment: validator( schemas.assessment ),
-  isComparison: validator( schemas.comparison ),
-  isComparisonsList: validator( schemas.comparisonsList, {
+  validateManifest: createValidator( schemas.manifest ),
+  validateAssessment: createValidator( schemas.assessment ),
+  validateComparison: createValidator( schemas.comparison ),
+  validateComparisonsList: createValidator( schemas.comparisonsList, {
     schemas: {
       comparison: schemas.comparison
     }
   } ),
-  isRepresentation: validator( schemas.representation ),
-  isRepresentationsList: validator( schemas.representationsList, {
+  validateRepresentation: createValidator( schemas.representation ),
+  validateRepresentationsList: createValidator( schemas.representationsList, {
     schemas: {
       representation: schemas.representation
     }
   } ),
-  isSelectPayload: validator( schemas.selectPayload, {
+  validateSelectPayload: createValidator( schemas.selectPayload, {
     schemas: {
       representationsList: schemas.representationsList,
       comparisonsList: schemas.comparisonsList,
@@ -35,5 +46,5 @@ module.exports = {
   } ),
 
   schemas: schemas,
-  VERSION: require('./package.json' ).version
+  VERSION: require( './package.json' ).version
 };
