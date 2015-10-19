@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Assessment",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "required": true,
+      "description": "Unique id"
+    },
+    "comparisonsNum": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "perAssessor": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "number"
+          },
+          "description": "Number of allowed/required comparisons per assessor"
+        },
+        "perRepresentation": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "number"
+          },
+          "description": "Number of allowed/required comparisons per representation"
+        }
+      }
+    },
+    "stage": {
+      "type": "number",
+      "required": true,
+      "description": "the current stage the algorithm is in"
+    }
+  },
+  "additionalProperties": true
+}

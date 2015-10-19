@@ -29,8 +29,16 @@ describe( 'D-PAC plugin specification', function(){
       expect( subject.isManifest( fixtures.manifests.invalid.missingType ) ).to.equal( false );
     } );
   } );
+  describe( '.isAssessment()', function(){
+    it( "should validate minimal assessments", function(){
+      expect( subject.isAssessment( fixtures.assessments.items.valid.minimal ) ).to.equal( true );
+    } );
+    it( "should validate full assessments", function(){
+      expect( subject.isAssessment( fixtures.assessments.items.valid.full ) ).to.equal( true );
+    } );
+  } );
   describe( '.isComparison()', function(){
-    it( "should validate minimal representations", function(){
+    it( "should validate minimal comparisons", function(){
       expect( subject.isComparison( fixtures.comparisons.items.valid.minimal ) ).to.equal( true );
     } );
     it( "should validate full comparisons", function(){
