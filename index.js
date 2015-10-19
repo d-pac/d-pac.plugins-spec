@@ -7,7 +7,8 @@ var schemas = {
   comparison: require( './schemas/ComparisonSchema.json' ),
   comparisonsList: require( './schemas/ComparisonsListSchema.json' ),
   representation: require( './schemas/RepresentationSchema.json' ),
-  representationsList: require( './schemas/RepresentationsListSchema.json' )
+  representationsList: require( './schemas/RepresentationsListSchema.json' ),
+  selectPayload: require( './schemas/SelectPayloadSchema.json' )
 };
 
 module.exports = {
@@ -23,6 +24,13 @@ module.exports = {
   isRepresentationsList: validator( schemas.representationsList, {
     schemas: {
       representation: schemas.representation
+    }
+  } ),
+  isSelectPayload: validator( schemas.selectPayload, {
+    schemas: {
+      representationsList: schemas.representationsList,
+      comparisonsList: schemas.comparisonsList,
+      assessment: schemas.assessment
     }
   } ),
 

@@ -49,6 +49,9 @@ describe( 'D-PAC plugin specification', function(){
     it( "should validate minimal representation lists", function(){
       expect( subject.isComparisonsList( fixtures.comparisons.lists.valid.minimal ) ).to.equal( true );
     } );
+    it( "should validate full representation lists", function(){
+      expect( subject.isComparisonsList( fixtures.comparisons.lists.valid.full ) ).to.equal( true );
+    } );
     it( "should invalidate representation lists with non-unique elements", function(){
       expect( subject.isComparisonsList( fixtures.comparisons.lists.invalid.nonUnique ) ).to.equal( false );
     } );
@@ -71,6 +74,9 @@ describe( 'D-PAC plugin specification', function(){
     it( "should validate minimal representation lists", function(){
       expect( subject.isRepresentationsList( fixtures.representations.lists.valid.minimal ) ).to.equal( true );
     } );
+    it( "should validate full representation lists", function(){
+      expect( subject.isRepresentationsList( fixtures.representations.lists.valid.full ) ).to.equal( true );
+    } );
     it( "should invalidate representation lists with too few elements", function(){
       expect( subject.isRepresentationsList( fixtures.representations.lists.invalid.tooFew ) ).to.equal( false );
     } );
@@ -78,4 +84,13 @@ describe( 'D-PAC plugin specification', function(){
       expect( subject.isRepresentationsList( fixtures.representations.lists.invalid.nonUnique ) ).to.equal( false );
     } );
   } );
+  describe( '.isSelectPayload()', function(){
+    it( "should validate minimal payloads", function(){
+      expect( subject.isSelectPayload( fixtures.selectPayloads.items.valid.minimal ) ).to.equal( true );
+    } );
+    it( "should validate full payloads", function(){
+      expect( subject.isSelectPayload( fixtures.selectPayloads.items.valid.full ) ).to.equal( true );
+    } );
+  } );
+  
 } );
