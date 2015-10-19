@@ -4,7 +4,7 @@ This module formally defines the plugins specification for d-pac. It uses [json-
 
 ## Plugin manifest
 
-A d-pac plugin **must** declare an object in its `package.json` which adheres to [ManifestSchema.json](blob/master/schemas/ManifestSchema.json)
+A d-pac plugin **must** declare an object in its `package.json` which adheres to [ManifestSchema.json](schemas/ManifestSchema.json)
 To verify your plugin fullfils all requirements:
 
 ```js
@@ -26,15 +26,15 @@ module.exports.select = function select(selectPayload){
 };
 ```
 
-This method should accept exactly one parameter which adheres to `<Type>PayloadSchema.json`, e.g. [SelectPayloadSchema.json](blob/master/schemas/SelectPayloadSchema.json)
+This method should accept exactly one parameter which adheres to `<Type>PayloadSchema.json`, e.g. [SelectPayloadSchema.json](schemas/SelectPayloadSchema.json)
 
 References:
 
-* [AssessmentSchema.json](blob/master/schemas/AssessmentSchema.json)
-* [ComparisonSchema.json](blob/master/schemas/ComparisonSchema.json)
-* [ComparisonsListSchema.json](blob/master/schemas/ComparisonsListSchema.json)
-* [RepresentationSchema.json](blob/master/schemas/RepresentationSchema.json)
-* [RepresentationsListSchema.json](blob/master/schemas/RepresentationsListSchema.json)
+* [AssessmentSchema.json](schemas/AssessmentSchema.json)
+* [ComparisonSchema.json](schemas/ComparisonSchema.json)
+* [ComparisonsListSchema.json](schemas/ComparisonsListSchema.json)
+* [RepresentationSchema.json](schemas/RepresentationSchema.json)
+* [RepresentationsListSchema.json](schemas/RepresentationsListSchema.json)
     
 ## Module API
 
