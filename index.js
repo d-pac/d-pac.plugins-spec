@@ -34,5 +34,6 @@ module.exports = {
     }
   } ),
 
-  schemas: schemas
+  schemas: schemas,
+  VERSION: require('./package.json' ).version
 };

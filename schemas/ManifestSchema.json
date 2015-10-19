@@ -27,7 +27,8 @@
           "type": {
             "type": "string",
             "required": true,
-            "title": "The type of the plugin"
+            "title": "The type of the plugin",
+            "oneOf": ["select"]
           },
           "entry": {
             "type": "string",
