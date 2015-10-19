@@ -1,6 +1,5 @@
-# d-pac.plugins-spec [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
+# d-pac.plugins-spec v0.4[![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
 
-v0.4
 
 [npm-url]: https://npmjs.org/package/d-pac.plugins-spec
 [npm-image]: https://badge.fury.io/js/d-pac.plugins-spec.svg
