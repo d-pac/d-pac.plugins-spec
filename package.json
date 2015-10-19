@@ -4,9 +4,7 @@
   "description": "D-pac plugin specification",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/*.spec.js -R spec ",
-    "build-docs": "rm -rf docs/schemas && cp -r schemas docs/schemas && bower install",
-    "publish-docs": "grunt gh-pages"
+    "test": "mocha tests/*.spec.js -R spec "
   },
   "repository": {
     "type": "git",
@@ -27,10 +25,6 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
-    "bower": "^1.6.3",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-gh-pages": "^0.10.0",
     "mocha": "^2.3.3",
     "must": "^0.13.1",
     "require-directory": "^2.1.1"
