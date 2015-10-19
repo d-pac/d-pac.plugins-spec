@@ -16,6 +16,32 @@
       "uniqueItems": false,
       "minItems": 0,
       "required": true
+    },
+    "rankType": {
+      "type": "string",
+      "oneOf": [
+        "to rank",
+        "benchmark",
+        "ranked",
+        "categorized"
+      ],
+      "required": true
+    },
+    "closeTo": {
+      "type": "string",
+      "description": "Unique representation ID"
+    },
+    "ability": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "se": {
+          "type": "number"
+        }
+      }
     }
   },
   "additionalProperties": true
