@@ -4,7 +4,7 @@
   "description": "D-pac plugin specification",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/*.spec.js -R spec "
+    "test": "mocha tests/*.spec.js -R dot "
   },
   "repository": {
     "type": "git",

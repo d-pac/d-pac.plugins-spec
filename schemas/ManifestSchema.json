@@ -29,11 +29,6 @@
             "required": true,
             "title": "The type of the plugin"
           },
-          "satisfies": {
-            "type": "string",
-            "required": false,
-            "title": "[Semver](http://semver.org) version specification of the **d-pac plugin specification** (i.e. this document) the plugin is compatible with. E.g. `^0.3.1`"
-          },
           "entry": {
             "type": "string",
             "required": false,

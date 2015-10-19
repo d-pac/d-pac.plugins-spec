@@ -22,7 +22,6 @@ module.exports.valid.full = {
       "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
       "type": "select",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
   ]
@@ -35,7 +34,6 @@ module.exports.invalid.missingDpac = {
       "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
       "type": "select",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
   ]
@@ -48,7 +46,6 @@ module.exports.invalid.notAnArray = {
       "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
       "type": "select",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
 };
@@ -59,7 +56,6 @@ module.exports.invalid.missingName = {
       "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
       "type": "select",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
   ]
@@ -71,7 +67,6 @@ module.exports.invalid.missingDescription = {
       "name": "comparative-selection",
       "type": "select",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
   ]
@@ -83,7 +78,6 @@ module.exports.invalid.missingType = {
       "name": "comparative-selection",
       "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
       "entry": "select",
-      "satisfies": "^0.4.0",
       "compatibility": "^0.6.0"
     }
   ]
