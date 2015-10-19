@@ -49,13 +49,23 @@ module.exports.lists.valid.minimal = [
     _id: "1",
     compared: [
       "2"
-    ]
+    ],
+    rankType: "to rank",
+    "ability": {
+      "se": null,
+      "value": null
+    }
   },
   {
     _id: "2",
     compared: [
       "1"
-    ]
+    ],
+    rankType: "to rank",
+    "ability": {
+      "se": null,
+      "value": null
+    }
   }
 ];
 
