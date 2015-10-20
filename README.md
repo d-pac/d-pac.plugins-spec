@@ -28,6 +28,8 @@ module.exports.select = function select(selectPayload){
 ```
 
 This method should accept exactly one parameter which adheres to `<Type>PayloadSchema.json`, e.g. [SelectPayloadSchema.json](schemas/SelectPayloadSchema.json)
+A plugin is allowed to override the payload schema in case it requires/ignores any of the fields.
+
 
 References:
 
@@ -36,6 +38,7 @@ References:
 * [ComparisonsListSchema.json](schemas/ComparisonsListSchema.json)
 * [RepresentationSchema.json](schemas/RepresentationSchema.json)
 * [RepresentationsListSchema.json](schemas/RepresentationsListSchema.json)
+* [SelectPayloadSchema.json](schemas/RepresentationsListSchema.json)
     
 ## Module API
 
