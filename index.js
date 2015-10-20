@@ -1,15 +1,27 @@
 'use strict';
-var validator = require( 'is-my-json-valid' );
+var jsonSchemaValidator = require( 'is-my-json-valid' );
+var deepmerge = require( 'deepmerge' );
 
-function createValidator( schema, opts ){
-  var validate = validator( schema, opts );
-  return function( data ){
+function createValidator( schema,
+                          opts ){
+  var validate = jsonSchemaValidator( schema, opts );
+  var validator = function( data ){
     var result = { isValid: validate( data ) };
     if( !result.isValid ){
       result.errors = validate.errors;
     }
     return result;
-  }
+  };
+  validator.schema = schema;
+  validator.opts = opts;
+  return validator;
+}
+
+function overrideValidator( validator,
+                            override,
+                            opts ){
+  var schema = deepmerge( validator.schema, override );
+  return createValidator( schema, opts );
 }
 
 var schemas = {
@@ -38,6 +50,7 @@ module.exports = {
   } ),
 
   createValidator: createValidator,
+  overrideValidator: overrideValidator,
   schemas: schemas,
   VERSION: require( './package.json' ).version
 };

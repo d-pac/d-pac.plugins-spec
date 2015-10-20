@@ -22,7 +22,8 @@
   "homepage": "https://github.com/d-pac/d-pac.plugins-spec",
   "dependencies": {
     "is-my-json-valid": "^2.12.2",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "deepmerge": "^0.2.7"
   },
   "devDependencies": {
     "mocha": "^2.3.3",
