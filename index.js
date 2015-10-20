@@ -21,6 +21,7 @@ function overrideValidator( validator,
                             override,
                             opts ){
   var schema = deepmerge( validator.schema, override );
+  opts = deepmerge( validator.opts, opts || {} );
   return createValidator( schema, opts );
 }
 

@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require( 'lodash' );
+
 module.exports = {
   valid: {},
   invalid: {}
@@ -29,56 +31,37 @@ module.exports.valid.full = {
 
 module.exports.invalid.missingDpac = {
   "incorrect": [
-    {
-      "name": "comparative-selection",
-      "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
-      "type": "select",
-      "entry": "select",
-      "compatibility": "^0.6.0"
-    }
+    _.cloneDeep(module.exports.valid.minimal["d-pac"][0])
   ]
 };
 
 module.exports.invalid.notAnArray = {
-  "d-pac": 
-    {
-      "name": "comparative-selection",
-      "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
-      "type": "select",
-      "entry": "select",
-      "compatibility": "^0.6.0"
-    }
+  "d-pac": _.cloneDeep(module.exports.valid.minimal["d-pac"][0])
 };
 
 module.exports.invalid.missingName = {
   "d-pac": [
-    {
-      "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
-      "type": "select",
-      "entry": "select",
-      "compatibility": "^0.6.0"
-    }
+    _.chain( module.exports.valid.minimal["d-pac"][0] )
+      .cloneDeep()
+      .omit( 'name' )
+      .value()
   ]
 };
 
 module.exports.invalid.missingDescription = {
   "d-pac": [
-    {
-      "name": "comparative-selection",
-      "type": "select",
-      "entry": "select",
-      "compatibility": "^0.6.0"
-    }
+    _.chain( module.exports.valid.minimal["d-pac"][0] )
+      .cloneDeep()
+      .omit( 'description' )
+      .value()
   ]
 };
 
 module.exports.invalid.missingType = {
   "d-pac": [
-    {
-      "name": "comparative-selection",
-      "description": "Simple comparative selection algorithm based on [NoMoreMarking's `cj` module](https://github.com/NoMoreMarking/cj)",
-      "entry": "select",
-      "compatibility": "^0.6.0"
-    }
+    _.chain( module.exports.valid.minimal["d-pac"][0] )
+      .cloneDeep()
+      .omit( 'type' )
+      .value()
   ]
 };

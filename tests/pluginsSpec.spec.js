@@ -22,18 +22,42 @@ describe( 'D-PAC plugin specification', function(){
     it( "should invalidate non-array dpac declarations", function(){
       var actual = subject.validateManifest( fixtures.manifests.invalid.notAnArray );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data["d-pac"]',
+          message: 'is the wrong type'
+        }
+      ] );
     } );
     it( "should invalidate dpac declarations without `name`", function(){
       var actual = subject.validateManifest( fixtures.manifests.invalid.missingName );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data["d-pac"].0.name',
+          message: 'is required'
+        }
+      ] );
     } );
     it( "should invalidate dpac declarations without `description`", function(){
       var actual = subject.validateManifest( fixtures.manifests.invalid.missingDescription );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data["d-pac"].0.description',
+          message: 'is required'
+        }
+      ] );
     } );
     it( "should invalidate dpac declarations without `type`", function(){
       var actual = subject.validateManifest( fixtures.manifests.invalid.missingType );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data["d-pac"].0.type',
+          message: 'is required'
+        }
+      ] );
     } );
   } );
   describe( '.validateAssessment()', function(){
@@ -68,6 +92,12 @@ describe( 'D-PAC plugin specification', function(){
     it( "should invalidate representation lists with non-unique elements", function(){
       var actual = subject.validateComparisonsList( fixtures.comparisons.lists.invalid.nonUnique );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: "data",
+          message: "must be unique"
+        }
+      ] );
     } );
   } );
   describe( '.validateRepresentation()', function(){
@@ -82,10 +112,22 @@ describe( 'D-PAC plugin specification', function(){
     it( "should invalidate representations with missing `id`s", function(){
       var actual = subject.validateRepresentation( fixtures.representations.items.invalid.missingId );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: "data._id",
+          message: "is required"
+        }
+      ] );
     } );
     it( "should invalidate representations with missing `compared`s", function(){
       var actual = subject.validateRepresentation( fixtures.representations.items.invalid.missingCompared );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: "data.compared",
+          message: "is required"
+        }
+      ] );
     } );
   } );
   describe( '.validateRepresentationsList()', function(){
@@ -100,10 +142,55 @@ describe( 'D-PAC plugin specification', function(){
     it( "should invalidate representation lists with too few elements", function(){
       var actual = subject.validateRepresentationsList( fixtures.representations.lists.invalid.tooFew );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: "data",
+          message: "has less items than allowed"
+        }
+      ] );
     } );
     it( "should invalidate representation lists with non-unique elements", function(){
       var actual = subject.validateRepresentationsList( fixtures.representations.lists.invalid.nonUnique );
       expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: "data",
+          message: "must be unique"
+        }
+      ] );
     } );
   } );
+  describe( '.createValidator()', function(){
+    it( "should validate correctly", function(){
+      var validator = subject.createValidator( {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Test createValidator",
+        "type": "object",
+        "properties": {
+          "foo": {
+            "type": "number",
+            "required": true
+          }
+        }
+      } );
+      var actual = validator( { baz: "foo" } );
+      expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data.foo',
+          message: 'is required'
+        }
+      ] );
+
+    } );
+  } );
+  describe( '.overrideVaLidator()', function(){
+    it( 'should override the base schema', function(){
+      var validator = subject.overrideValidator( subject.validateRepresentationsList, {
+        minItems: 1
+      } );
+      var actual = validator( fixtures.representations.lists.invalid.tooFew );
+      expect( actual.isValid ).to.equal( true );
+    } )
+  } )
 } );
