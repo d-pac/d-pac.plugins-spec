@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://d-pac.be/schemas/selectionpayload.json",
+  "name": "selectionpayload",
   "title": "Selection payload",
   "type": "object",
   "properties": {

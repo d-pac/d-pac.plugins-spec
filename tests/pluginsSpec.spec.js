@@ -207,8 +207,8 @@ describe( 'D-PAC plugin specification', function(){
       ] );
     } );
   } );
-  describe.skip( '.createValidator()', function(){
-    it( "should validate correctly", function(){
+  describe( '.createValidator()', function(){
+    it( "should create a functional validator from a schema object", function(){
       var validator = subject.createValidator( {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "title": "Test createValidator",
@@ -230,14 +230,77 @@ describe( 'D-PAC plugin specification', function(){
       ] );
 
     } );
-  } );
-  describe.skip( '.overrideVaLidator()', function(){
-    it( 'should override the base schema', function(){
-      var validator = subject.overrideValidator( subject.validateRepresentationsList, {
-        minItems: 1
+    it( "should allow referencing other d-pac schemas", function(){
+      var validator = subject.createValidator( {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Test createValidator",
+        "type": "object",
+        "properties": {
+          "foo": {
+            "$ref": "representation"
+          }
+        }
       } );
-      var actual = validator( fixtures.representations.lists.invalid.tooFew );
-      expect( actual.isValid ).to.equal( true );
-    } )
-  } )
+      var actual = validator( { foo: fixtures.representations.items.invalid.missingCompared } );
+      expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data.foo',
+          message: 'referenced schema does not match'
+        }
+      ] );
+
+    } );
+    it( "should allow generating from d-pac schemas by name", function(){
+      var validator = subject.createValidator( subject.schemas.representation.name );
+      var actual = validator( fixtures.representations.items.invalid.missingCompared );
+      expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data.compared',
+          message: 'is required'
+        }
+      ] );
+    } );
+    it( "should allow overriding base d-pac schemas", function(){
+      var validator = subject.createValidator( "selectionpayload", {
+        "selectionpayload": {
+          "properties": {
+            "assessment": {
+              "required": true
+            }
+          }
+        },
+        "comparison": {
+          "properties": {
+            "updatedAt": {
+              "required": true
+            }
+          }
+        }
+      } );
+      var actual = validator( {
+        comparisons: [
+          fixtures.comparisons.items.valid.full, //should pass 
+          fixtures.comparisons.items.valid.minimal, //should fail on custom ruleset
+          fixtures.comparisons.items.invalid.missingAssessment //should fail on base ruleset
+        ]
+      } );
+      expect( actual.isValid ).to.equal( false );
+      expect( actual.errors ).to.eql( [
+        {
+          field: 'data.comparisons.1',
+          message: 'referenced schema does not match'
+        },
+        {
+          "field": "data.comparisons.2",
+          "message": "referenced schema does not match"
+        },
+        {
+          field: 'data.assessment',
+          message: 'is required'
+        }
+      ] );
+    } );
+  } );
 } );

@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://d-pac.be/schemas/representation.json",
+  "name": "representation",
   "title": "Representation",
   "type": "object",
   "properties": {

@@ -10,12 +10,7 @@ module.exports.items.valid.minimal = {
   _id: "1",
   compared: [
     "2"
-  ],
-  rankType: "to rank",
-  "ability": {
-    "se": null,
-    "value": null
-  }
+  ]
 };
 module.exports.items.valid.full = {
   "_id": "56121e105f699bd58181ab16",
