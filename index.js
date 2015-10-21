@@ -26,36 +26,24 @@ function overrideValidator( validator,
 }
 
 var schemas = {
-  manifest: require( './schemas/ManifestSchema.json' ),
-  assessment: require( './schemas/AssessmentSchema.json' ),
-  comparison: require( './schemas/ComparisonSchema.json' ),
-  comparisonsList: require( './schemas/ComparisonsListSchema.json' ),
-  representation: require( './schemas/RepresentationSchema.json' ),
-  representationsList: require( './schemas/RepresentationsListSchema.json' ),
-  selectPayload: require( './schemas/SelectPayloadSchema.json' )
+  assessment: require( './schemas/assessment.json' ),
+  comparison: require( './schemas/comparison.json' ),
+  pluginmanifest: require( './schemas/pluginmanifest.json' ),
+  representation: require( './schemas/representation.json' ),
+  selectionpayload: require( './schemas/selectionpayload.json' )
 };
 
 module.exports = {
-  validateManifest: createValidator( schemas.manifest ),
+  validatePluginmanifest: createValidator( schemas.pluginmanifest ),
   validateAssessment: createValidator( schemas.assessment ),
   validateComparison: createValidator( schemas.comparison ),
-  validateComparisonsList: createValidator( schemas.comparisonsList, {
-    schemas: {
-      comparison: schemas.comparison
-    }
-  } ),
   validateRepresentation: createValidator( schemas.representation ),
-  validateRepresentationsList: createValidator( schemas.representationsList, {
-    schemas: {
-      representation: schemas.representation
-    }
-  } ),
-  validateSelectPayload: createValidator( schemas.selectPayload, {
+  validateSelectionpayload: createValidator( schemas.selectionpayload, {
+    //unfortunately needs to use fragments instead of ID's since is-my-json-valid ignores URI references
+    //rewrite once https://github.com/mafintosh/is-my-json-valid/pull/95 lands
     schemas: {
       representation: schemas.representation,
-      representationsList: schemas.representationsList,
       comparison: schemas.comparison,
-      comparisonsList: schemas.comparisonsList,
       assessment: schemas.assessment
     }
   } ),

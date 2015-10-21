@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://d-pac.be/schemas/representation.json",
   "title": "Representation",
   "type": "object",
   "properties": {
@@ -24,8 +25,7 @@
         "benchmark",
         "ranked",
         "categorized"
-      ],
-      "required": true
+      ]
     },
     "closeTo": {
       "type": "string",
@@ -33,7 +33,6 @@
     },
     "ability": {
       "type": "object",
-      "required": true,
       "properties": {
         "value": {
           "type": [

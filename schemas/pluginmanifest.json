@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "required": true,
+  "id": "http://d-pac.be/schemas/pluginmanifest.json",
   "title": "D-PAC plugin manifest",
+  "required": true,
   "type": "object",
   "additionalProperties": true,
   "properties": {

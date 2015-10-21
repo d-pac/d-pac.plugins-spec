@@ -1,4 +1,6 @@
 'use strict';
+var _ = require('lodash');
+
 
 module.exports.items = {
   valid: {},
@@ -48,3 +50,8 @@ module.exports.items.valid.full = {
     "assessor": ""
   }
 };
+
+module.exports.items.invalid.missingStage = _.chain( module.exports.items.valid.minimal )
+  .cloneDeep()
+  .omit( 'stage' )
+  .value();

@@ -87,3 +87,14 @@ module.exports.lists.invalid.tooFew = [
     .set( "_id", "f" )
     .value()
 ];
+
+module.exports.lists.invalid.items = [
+  _.chain( module.exports.items.valid.minimal )
+    .cloneDeep()
+    .set( "_id", "g" )
+    .value(),
+  _.chain( module.exports.items.invalid.missingCompared )
+    .cloneDeep()
+    .set( "_id", "h" )
+    .value()
+];

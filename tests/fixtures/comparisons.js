@@ -46,6 +46,11 @@ module.exports.items.valid.full = {
   "__v": 0
 };
 
+module.exports.items.invalid.missingAssessment = _.chain( module.exports.items.valid.minimal )
+  .cloneDeep()
+  .omit( 'assessment' )
+  .value();
+
 module.exports.lists = {
   valid: {},
   invalid: {}
@@ -81,5 +86,16 @@ module.exports.lists.invalid.nonUnique = [
   _.chain( module.exports.items.valid.minimal )
     .cloneDeep()
     .set( "_id", "e" )
+    .value()
+];
+
+module.exports.lists.invalid.items = [
+  _.chain( module.exports.items.valid.minimal )
+    .cloneDeep()
+    .set( "_id", "f" )
+    .value(),
+  _.chain( module.exports.items.invalid.missingAssessment )
+    .cloneDeep()
+    .set( "_id", "g" )
     .value()
 ];

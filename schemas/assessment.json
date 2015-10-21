@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://d-pac.be/schemas/assessment.json",
   "title": "Assessment",
   "type": "object",
   "properties": {
