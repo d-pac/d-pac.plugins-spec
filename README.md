@@ -1,17 +1,18 @@
-# d-pac.plugins-spec v0.4[![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
+# d-pac.plugins-spec v0.4
+[![Npm package][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
 
 This module formally defines the plugins specification for d-pac. It uses [json-schema](http://json-schema.org/) to describe the mandatory plugin declaration and the data it accepts.
 
 ## Plugin manifest
 
-A d-pac plugin **must** declare an object in its `package.json` which adheres to [ManifestSchema.json](schemas/ManifestSchema.json)
+A d-pac plugin **must** declare an object in its `package.json` which adheres to [schemas/pluginmanifest.json](schemas/pluginmanifest.json)
 To verify your plugin fullfils all requirements:
 
 ```js
 var spec = require('d-pac.plugins-spec');
-var pkg = require('./package.json');
+var pkg = require('./package.json'); // retrieve your plugin's package manifest
 
-var result = spec.validateManifest(pkg);
+var result = spec.validatePluginmanifest(pkg);
 console.log(result.isValid);
 ```
 
@@ -22,58 +23,57 @@ A d-pac plugin **must** expose a method conform to its `type` declaration in the
 Example:
 
 ```js
-module.exports.select = function select(selectPayload){
+module.exports.select = function select(selectionpayload){
     //do your stuff
 };
 ```
 
-This method should accept exactly one parameter which adheres to `<Type>PayloadSchema.json`, e.g. [SelectPayloadSchema.json](schemas/SelectPayloadSchema.json)
+This method should accept exactly one parameter which adheres to  [schemas/selectionpayload.json](schemas/selectionpayload.json)
 A plugin is allowed to override the payload schema in case it requires/ignores any of the fields.
 
 
 References:
 
-* [AssessmentSchema.json](schemas/AssessmentSchema.json)
-* [ComparisonSchema.json](schemas/ComparisonSchema.json)
-* [ComparisonsListSchema.json](schemas/ComparisonsListSchema.json)
-* [RepresentationSchema.json](schemas/RepresentationSchema.json)
-* [RepresentationsListSchema.json](schemas/RepresentationsListSchema.json)
-* [SelectPayloadSchema.json](schemas/RepresentationsListSchema.json)
+* [schemas/assessment.json](schemas/assessment.json)
+* [schemas/comparison.json](schemas/comparison.json)
+* [schemas/representation.json](schemas/representation.json)
+* [schemas/selectionpayload.json](schemas/selectionpayload.json)
     
 ## Module API
 
-This module exposes all schemas as a `schema` object:
+### Schemas
+
+This module exposes a mapping of schema declarations to schema names as `schemas`:
 
 ```js
 var spec = require('d-pac.plugins-spec');
-console.log(Object.keys(spec.schemas))
+console.log(Object.keys(spec.schemas));
 ```
 ```
 #output
-[ 'manifest',
+[ 'pluginmanifest',
   'assessment',
   'comparison',
-  'comparisonsList',
   'representation',
-  'representationsList',
-  'selectPayload' ]
+  'selectionpayload' ]
 ```
 
-It also exposes validators for each of the schemas, wrapping [`is-my-json-valid`](https://github.com/mafintosh/is-my-json-valid):
+### Default Validators
+
+It also exposes validators for each of the schemas:
 
 ```js
 console.log(Object.keys(spec));
 ```
 ```
 #output
-[ 'validateManifest',
+[ 'validatePluginmanifest',
   'validateAssessment',
   'validateComparison',
-  'validateComparisonsList',
   'validateRepresentation',
-  'validateRepresentationsList',
-  'validateSelectPayload',
+  'validateSelectionpayload',
   'schemas',
+  'createValidator',
   'VERSION' ]
 ```
 
@@ -85,7 +85,55 @@ console.log(Object.keys(spec));
 var result = spec.validateComparison(comparison);
 ```
 
-The result is an object with `isValid: Boolean` and in case it's not valid data an `errors` array with all errors.
+The result is an object with `isValid: Boolean` and in case the data's not valid an `errors` array with all errors.
+
+### Custom Validators
+
+You can create validators of your own, either based on one of the d-pac schemas, or completely new.
+
+```js
+//new schema
+var validator = subject.createValidator( {
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Test createValidator",
+	"type": "object",
+	"properties": {
+	  "foo": {
+	    "type": "number",
+	    "required": true
+	  }
+	}
+} );
+console.log(validator( { foo: "foo" } ).isValid); //outputs: false
+console.log(validator( { foo: 9 } ).isValid); //outputs: true
+```
+
+```js
+//based on existing
+var validator = subject.createValidator( "selectionpayload", {
+	"selectionpayload": {
+	  "properties": {
+	    "assessment": {
+	      "required": true
+	    }
+	  }
+	},
+	"comparison": {
+	  "properties": {
+	    "updatedAt": {
+	      "required": true
+	    }
+	  }
+	}
+} );
+```
+The above example creates a validator based on [schemas/selectionpayload.json](schemas/selectionpayload.json) by passing the `"selectionpayload"` as a first argument.
+You can override the rules of the original schema, by passing extra rules as objects mapped to the schema names.
+E.g. the `assessment` property of `selectionpayload` is made mandatory in the above example. 
+
+Since the `selectionpayload` schema references several other schemas, you can override these too. E.g. all comparison objects passed to `selectionpayload.comparisons` are required to have a `updatedAt` property.
+
+The structure of the overriding object must be **exactly** the same as that of the base schema, i.e. make sure you adhere to it strictly.
 
 
 [npm-url]: https://npmjs.org/package/d-pac.plugins-spec
