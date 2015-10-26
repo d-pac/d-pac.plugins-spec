@@ -17,7 +17,6 @@
     },
     "assessment": {
       "type": "string",
-      "required": true,
       "description": "Unique ID reference to an `assessment` object"
     },
     "representations": {
@@ -42,8 +41,11 @@
       "required": true,
       "properties": {
         "selection": {
-          "type": "string",
-          "required": true,
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false,
           "description": "Unique ID reference to a `representation` object"
         }
       },

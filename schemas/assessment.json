@@ -16,18 +16,16 @@
       "properties": {
         "perAssessor": {
           "type": "array",
-          "required": true,
           "items": {
-            "type": "number"
+            "type": [
+              "number",
+              "null"
+            ]
           },
-          "description": "Number of allowed/required comparisons per assessor"
+          "description": "Number of allowed/required comparisons per assessor (per stage if applicable)"
         },
         "perRepresentation": {
-          "type": "array",
-          "required": true,
-          "items": {
-            "type": "number"
-          },
+          "type": "number",
           "description": "Number of allowed/required comparisons per representation"
         }
       }

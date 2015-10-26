@@ -11,7 +11,7 @@ module.exports.items.valid.minimal = {
   "_id": "56121dc75f699bd58181ab13",
   "stage": 0,
   "comparisonsNum": {
-    "perRepresentation": [ 0 ],
+    "perRepresentation": 0,
     "perAssessor": [
       200
     ]
@@ -31,7 +31,7 @@ module.exports.items.valid.full = {
   "enableTimeLogging": false,
   "stage": 0,
   "comparisonsNum": {
-    "perRepresentation": [ 0 ],
+    "perRepresentation": 0,
     "perAssessor": [
       200
     ]

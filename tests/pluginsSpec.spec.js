@@ -283,7 +283,7 @@ describe( 'D-PAC plugin specification', function(){
         comparisons: [
           fixtures.comparisons.items.valid.full, //should pass 
           fixtures.comparisons.items.valid.minimal, //should fail on custom ruleset
-          fixtures.comparisons.items.invalid.missingAssessment //should fail on base ruleset
+          fixtures.comparisons.items.invalid.missingAssessor //should fail on base ruleset
         ]
       } );
       expect( actual.isValid ).to.equal( false );

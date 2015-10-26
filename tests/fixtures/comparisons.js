@@ -46,9 +46,9 @@ module.exports.items.valid.full = {
   "__v": 0
 };
 
-module.exports.items.invalid.missingAssessment = _.chain( module.exports.items.valid.minimal )
+module.exports.items.invalid.missingAssessor = _.chain( module.exports.items.valid.minimal )
   .cloneDeep()
-  .omit( 'assessment' )
+  .omit( 'assessor' )
   .value();
 
 module.exports.lists = {
@@ -94,7 +94,7 @@ module.exports.lists.invalid.items = [
     .cloneDeep()
     .set( "_id", "f" )
     .value(),
-  _.chain( module.exports.items.invalid.missingAssessment )
+  _.chain( module.exports.items.invalid.missingAssessor )
     .cloneDeep()
     .set( "_id", "g" )
     .value()

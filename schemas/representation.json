@@ -29,7 +29,10 @@
       ]
     },
     "closeTo": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "Unique representation ID"
     },
     "ability": {
