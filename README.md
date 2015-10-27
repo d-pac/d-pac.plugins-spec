@@ -135,6 +135,41 @@ Since the `selectionpayload` schema references several other schemas, you can ov
 
 The structure of the overriding object must be **exactly** the same as that of the base schema, i.e. make sure you adhere to it strictly.
 
+### Plugin declaration retrieval from package manifests
+
+You can use `getPlugins` to retrieve plugin declarations from package manifests:
+
+```js
+var plugins = subject.getPlugins({
+  "d-pac": [
+    {
+      "name": "test",
+      "description": "test",
+      "type": "select"
+    }
+  ],
+  dependencies: {
+    'd-pac.plugins-spec': '^0.4.0'
+  }
+});
+```
+
+To allow backwards compatibility to plugins that do not declare a dependency on this module, pass an options object with `allowIndependents:true`:
+
+```js
+var plugins = subject.getPlugins({
+  "d-pac": [
+    {
+      "name": "test",
+      "description": "test",
+      "type": "select"
+    }
+  ]
+}, {
+  allowIndependents: true
+);
+```
+
 
 [npm-url]: https://npmjs.org/package/d-pac.plugins-spec
 [npm-image]: https://badge.fury.io/js/d-pac.plugins-spec.svg

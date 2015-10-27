@@ -303,4 +303,26 @@ describe( 'D-PAC plugin specification', function(){
       ] );
     } );
   } );
+  describe( '.getPlugins()', function(){
+    it( 'should correctly identify valid plugin manifests with dependencies', function(){
+      var plugins = subject.getPlugins( fixtures.manifests.valid.full );
+      expect( plugins ).to.eql( fixtures.manifests.valid.full[ 'd-pac' ] );
+    } );
+    it( 'should correctly identify non-plugin manifests', function(){
+      var plugins = subject.getPlugins( fixtures.manifests.invalid.missingDpac );
+      expect( plugins ).to.eql( [] );
+    } );
+    it( 'should correctly identify invalid plugin manifests', function(){
+      var plugins = subject.getPlugins( fixtures.manifests.invalid.notAnArray, { allowIndependents: true } );
+      expect( plugins ).to.eql( [] );
+    } );
+    it( 'should correctly identify valid plugin manifests with incompatible dependency versions', function(){
+      var plugins = subject.getPlugins( fixtures.manifests.invalid.incompatibleVersion );
+      expect( plugins ).to.eql( [] );
+    } );
+    it( 'should correctly identify valid plugin manifests without dependencies', function(){
+      var plugins = subject.getPlugins( fixtures.manifests.valid.minimal, { allowIndependents: true } );
+      expect( plugins ).to.eql( fixtures.manifests.valid.minimal[ 'd-pac' ] );
+    } );
+  } );
 } );
