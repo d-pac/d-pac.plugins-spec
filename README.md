@@ -5,7 +5,7 @@ This module formally defines the plugins specification for d-pac. It uses [json-
 
 ## Plugin manifest
 
-A d-pac plugin **must** declare an object in its `package.json` which adheres to [schemas/pluginmanifest.json](schemas/pluginmanifest.json)
+A d-pac plugin **must** declare an object in its `package.json` which adheres to [schemas/pluginmanifest.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/pluginmanifest.json)
 To verify your plugin fullfils all requirements:
 
 ```js
@@ -28,16 +28,16 @@ module.exports.select = function select(selectionpayload){
 };
 ```
 
-This method should accept exactly one parameter which adheres to  [schemas/selectionpayload.json](schemas/selectionpayload.json)
+This method should accept exactly one parameter which adheres to  [schemas/selectionpayload.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/selectionpayload.json)
 A plugin is allowed to override the payload schema in case it requires/ignores any of the fields.
 
 
 References:
 
-* [schemas/assessment.json](schemas/assessment.json)
-* [schemas/comparison.json](schemas/comparison.json)
-* [schemas/representation.json](schemas/representation.json)
-* [schemas/selectionpayload.json](schemas/selectionpayload.json)
+* [schemas/assessment.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/assessment.json)
+* [schemas/comparison.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/comparison.json)
+* [schemas/representation.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/representation.json)
+* [schemas/selectionpayload.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/selectionpayload.json)
     
 ## Module API
 
@@ -127,7 +127,7 @@ var validator = subject.createValidator( "selectionpayload", {
 	}
 } );
 ```
-The above example creates a validator based on [schemas/selectionpayload.json](schemas/selectionpayload.json) by passing the `"selectionpayload"` as a first argument.
+The above example creates a validator based on [schemas/selectionpayload.json](https://github.com/d-pac/d-pac.plugins-spec/blob/master/schemas/selectionpayload.json) by passing the `"selectionpayload"` as a first argument.
 You can override the rules of the original schema, by passing extra rules as objects mapped to the schema names.
 E.g. the `assessment` property of `selectionpayload` is made mandatory in the above example. 
 
