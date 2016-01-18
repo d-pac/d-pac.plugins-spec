@@ -52,7 +52,7 @@ module.exports = {
   }
 };
 
-_.each( schemasByName, function( schema,
+_.forEach( schemasByName, function( schema,
                                  name ){
-  module.exports[ 'validate' + _.capitalize( _.camelCase( name ) ) ] = module.exports.createValidator( schema );
+  module.exports[ 'validate' + _.upperFirst( _.camelCase( name ) ) ] = module.exports.createValidator( schema );
 } );
