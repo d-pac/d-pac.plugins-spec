@@ -21,14 +21,14 @@
   },
   "homepage": "https://github.com/d-pac/d-pac.plugins-spec",
   "dependencies": {
-    "deepmerge": "^0.2.7",
-    "is-my-json-valid": "^2.12.2",
-    "lodash": "^4.0.0",
+    "deepmerge": "^0.2.10",
+    "is-my-json-valid": "^2.12.4",
+    "lodash": "^4.0.1",
     "require-directory": "^2.1.1",
-    "semver": "^5.0.3"
+    "semver": "^5.1.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.3",
+    "mocha": "^2.3.4",
     "must": "^0.13.1"
   }
 }
