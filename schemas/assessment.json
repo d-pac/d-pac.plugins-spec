@@ -10,23 +10,27 @@
       "required": true,
       "description": "Unique id"
     },
-    "comparisonsNum": {
+    "limits": {
       "type": "object",
       "required": true,
       "properties": {
-        "perAssessor": {
-          "type": "array",
-          "items": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "description": "Number of allowed/required comparisons per assessor (per stage if applicable)"
+        "comparisonsNum": {
+          "type": "object",
+          "required": true,
+          "properties": {
+            "perAssessor": {
+              "type": "number",
+              "description": "Number of allowed/required comparisons per assessor"
+            },
+            "perRepresentation": {
+              "type": "number",
+              "description": "Number of allowed/required comparisons per representation"
+            }
+          }
         },
-        "perRepresentation": {
+        "assessorsNum": {
           "type": "number",
-          "description": "Number of allowed/required comparisons per representation"
+          "description": "Minimum number of required assessors"
         }
       }
     },
