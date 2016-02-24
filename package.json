@@ -1,6 +1,6 @@
 {
   "name": "d-pac.plugins-spec",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "D-pac plugin specification",
   "main": "index.js",
   "scripts": {
