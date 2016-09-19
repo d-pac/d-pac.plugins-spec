@@ -23,7 +23,7 @@
   "dependencies": {
     "deepmerge": "^0.2.10",
     "is-my-json-valid": "^2.12.4",
-    "lodash": "^4.0.1",
+    "lodash": "^4.16.0",
     "require-directory": "^2.1.1",
     "semver": "^5.1.0"
   },
