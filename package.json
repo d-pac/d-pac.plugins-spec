@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/d-pac/d-pac.plugins-spec",
   "dependencies": {
-    "deepmerge": "^0.2.10",
+    "deepmerge": "^1.0.1",
     "is-my-json-valid": "^2.12.4",
     "lodash": "^4.0.1",
     "require-directory": "^2.1.1",
