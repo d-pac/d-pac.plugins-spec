@@ -28,7 +28,7 @@
     "semver": "^5.1.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.4",
+    "mocha": "^3.1.0",
     "must": "^0.13.1"
   }
 }
